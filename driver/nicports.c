@@ -23,8 +23,8 @@
 
 //#define VENDOR_ID  0x10EC	// RealTek Semiconductors Corp
 //#define DEVICE_ID  0x8139	// RLT-8139 Network Controller
-#define VENDOR_ID  0x1022
-#define DEVICE_ID  0x2000
+#define VENDOR_ID  0x8086
+#define DEVICE_ID  0x100F
 
 char modname[] = "nicports";
 unsigned int iobase, io_len;
@@ -54,7 +54,7 @@ struct file_operations my_fops = {
 				owner: 	THIS_MODULE,
 				read:	my_read,
 				};
-static int __devinit nicport_probe(struct pci_dev *dev, const struct pci_device_id *id){
+static int  nicport_probe(struct pci_dev *dev, const struct pci_device_id *id){
 
 	printk("start to  probe\n");
 	return 0;

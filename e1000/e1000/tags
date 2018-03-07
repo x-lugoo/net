@@ -1,0 +1,417 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+e1000_driver_name	e1000_main.c	/^char e1000_driver_name[] = "e1000_jeff";$/;"	v
+e1000_driver_string	e1000_main.c	/^static char e1000_driver_string[] = "Intel(R) PRO\/1000 Network Driver";$/;"	v	file:
+DRV_VERSION	e1000_main.c	38;"	d	file:
+e1000_driver_version	e1000_main.c	/^const char e1000_driver_version[] = DRV_VERSION;$/;"	v
+e1000_copyright	e1000_main.c	/^static const char e1000_copyright[] = "Copyright (c) 1999-2006 Intel Corporation.";$/;"	v	file:
+e1000_pci_tbl	e1000_main.c	/^static const struct pci_device_id e1000_pci_tbl[] = {$/;"	v	typeref:struct:pci_device_id	file:
+e1000_alloc_dummy_rx_buffers	e1000_main.c	/^static void e1000_alloc_dummy_rx_buffers(struct e1000_adapter *adapter,$/;"	f	file:
+COPYBREAK_DEFAULT	e1000_main.c	191;"	d	file:
+__read_mostly	e1000_main.c	/^static unsigned int copybreak __read_mostly = COPYBREAK_DEFAULT;$/;"	v	file:
+e1000_err_handler	e1000_main.c	/^static const struct pci_error_handlers e1000_err_handler = {$/;"	v	typeref:struct:pci_error_handlers	file:
+e1000_driver	e1000_main.c	/^static struct pci_driver e1000_driver = {$/;"	v	typeref:struct:pci_driver	file:
+DRV_VERSION	e1000_main.c	/^MODULE_VERSION(DRV_VERSION);$/;"	v
+DEFAULT_MSG_ENABLE	e1000_main.c	227;"	d	file:
+debug	e1000_main.c	/^static int debug = -1;$/;"	v	file:
+e1000_get_hw_dev	e1000_main.c	/^struct net_device *e1000_get_hw_dev(struct e1000_hw *hw)$/;"	f
+e1000_init_module	e1000_main.c	/^static int __init e1000_init_module(void)$/;"	f	file:
+e1000_init_module	e1000_main.c	/^module_init(e1000_init_module);$/;"	v
+e1000_exit_module	e1000_main.c	/^static void __exit e1000_exit_module(void)$/;"	f	file:
+e1000_exit_module	e1000_main.c	/^module_exit(e1000_exit_module);$/;"	v
+e1000_request_irq	e1000_main.c	/^static int e1000_request_irq(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_free_irq	e1000_main.c	/^static void e1000_free_irq(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_irq_disable	e1000_main.c	/^static void e1000_irq_disable(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_irq_enable	e1000_main.c	/^static void e1000_irq_enable(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_update_mng_vlan	e1000_main.c	/^static void e1000_update_mng_vlan(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_init_manageability	e1000_main.c	/^static void e1000_init_manageability(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_release_manageability	e1000_main.c	/^static void e1000_release_manageability(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_configure	e1000_main.c	/^static void e1000_configure(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_up	e1000_main.c	/^int e1000_up(struct e1000_adapter *adapter)$/;"	f
+e1000_power_up_phy	e1000_main.c	/^void e1000_power_up_phy(struct e1000_adapter *adapter)$/;"	f
+e1000_power_down_phy	e1000_main.c	/^static void e1000_power_down_phy(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_down_and_stop	e1000_main.c	/^static void e1000_down_and_stop(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_down	e1000_main.c	/^void e1000_down(struct e1000_adapter *adapter)$/;"	f
+e1000_reinit_locked	e1000_main.c	/^void e1000_reinit_locked(struct e1000_adapter *adapter)$/;"	f
+e1000_reset	e1000_main.c	/^void e1000_reset(struct e1000_adapter *adapter)$/;"	f
+e1000_dump_eeprom	e1000_main.c	/^static void e1000_dump_eeprom(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_is_need_ioport	e1000_main.c	/^static int e1000_is_need_ioport(struct pci_dev *pdev)$/;"	f	file:
+e1000_fix_features	e1000_main.c	/^static netdev_features_t e1000_fix_features(struct net_device *netdev,$/;"	f	file:
+e1000_set_features	e1000_main.c	/^static int e1000_set_features(struct net_device *netdev,$/;"	f	file:
+e1000_netdev_ops	e1000_main.c	/^static const struct net_device_ops e1000_netdev_ops = {$/;"	v	typeref:struct:net_device_ops	file:
+e1000_init_hw_struct	e1000_main.c	/^static int e1000_init_hw_struct(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_probe	e1000_main.c	/^static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)$/;"	f	file:
+e1000_remove	e1000_main.c	/^static void e1000_remove(struct pci_dev *pdev)$/;"	f	file:
+e1000_sw_init	e1000_main.c	/^static int e1000_sw_init(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_alloc_queues	e1000_main.c	/^static int e1000_alloc_queues(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_open	e1000_main.c	/^static int e1000_open(struct net_device *netdev)$/;"	f	file:
+e1000_close	e1000_main.c	/^static int e1000_close(struct net_device *netdev)$/;"	f	file:
+e1000_check_64k_bound	e1000_main.c	/^static bool e1000_check_64k_bound(struct e1000_adapter *adapter, void *start,$/;"	f	file:
+e1000_setup_tx_resources	e1000_main.c	/^static int e1000_setup_tx_resources(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_setup_all_tx_resources	e1000_main.c	/^int e1000_setup_all_tx_resources(struct e1000_adapter *adapter)$/;"	f
+e1000_configure_tx	e1000_main.c	/^static void e1000_configure_tx(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_setup_rx_resources	e1000_main.c	/^static int e1000_setup_rx_resources(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_setup_all_rx_resources	e1000_main.c	/^int e1000_setup_all_rx_resources(struct e1000_adapter *adapter)$/;"	f
+e1000_setup_rctl	e1000_main.c	/^static void e1000_setup_rctl(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_configure_rx	e1000_main.c	/^static void e1000_configure_rx(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_free_tx_resources	e1000_main.c	/^static void e1000_free_tx_resources(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_free_all_tx_resources	e1000_main.c	/^void e1000_free_all_tx_resources(struct e1000_adapter *adapter)$/;"	f
+e1000_unmap_and_free_tx_resource	e1000_main.c	/^e1000_unmap_and_free_tx_resource(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_clean_tx_ring	e1000_main.c	/^static void e1000_clean_tx_ring(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_clean_all_tx_rings	e1000_main.c	/^static void e1000_clean_all_tx_rings(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_free_rx_resources	e1000_main.c	/^static void e1000_free_rx_resources(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_free_all_rx_resources	e1000_main.c	/^void e1000_free_all_rx_resources(struct e1000_adapter *adapter)$/;"	f
+E1000_HEADROOM	e1000_main.c	2065;"	d	file:
+e1000_frag_len	e1000_main.c	/^static unsigned int e1000_frag_len(const struct e1000_adapter *a)$/;"	f	file:
+e1000_alloc_frag	e1000_main.c	/^static void *e1000_alloc_frag(const struct e1000_adapter *a)$/;"	f	file:
+e1000_clean_rx_ring	e1000_main.c	/^static void e1000_clean_rx_ring(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_clean_all_rx_rings	e1000_main.c	/^static void e1000_clean_all_rx_rings(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_enter_82542_rst	e1000_main.c	/^static void e1000_enter_82542_rst(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_leave_82542_rst	e1000_main.c	/^static void e1000_leave_82542_rst(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_set_mac	e1000_main.c	/^static int e1000_set_mac(struct net_device *netdev, void *p)$/;"	f	file:
+e1000_set_rx_mode	e1000_main.c	/^static void e1000_set_rx_mode(struct net_device *netdev)$/;"	f	file:
+e1000_update_phy_info_task	e1000_main.c	/^static void e1000_update_phy_info_task(struct work_struct *work)$/;"	f	file:
+e1000_82547_tx_fifo_stall_task	e1000_main.c	/^static void e1000_82547_tx_fifo_stall_task(struct work_struct *work)$/;"	f	file:
+e1000_has_link	e1000_main.c	/^bool e1000_has_link(struct e1000_adapter *adapter)$/;"	f
+e1000_watchdog	e1000_main.c	/^static void e1000_watchdog(struct work_struct *work)$/;"	f	file:
+latency_range	e1000_main.c	/^enum latency_range {$/;"	g	file:
+lowest_latency	e1000_main.c	/^	lowest_latency = 0,$/;"	e	enum:latency_range	file:
+low_latency	e1000_main.c	/^	low_latency = 1,$/;"	e	enum:latency_range	file:
+bulk_latency	e1000_main.c	/^	bulk_latency = 2,$/;"	e	enum:latency_range	file:
+latency_invalid	e1000_main.c	/^	latency_invalid = 255$/;"	e	enum:latency_range	file:
+e1000_update_itr	e1000_main.c	/^static unsigned int e1000_update_itr(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_set_itr	e1000_main.c	/^static void e1000_set_itr(struct e1000_adapter *adapter)$/;"	f	file:
+E1000_TX_FLAGS_CSUM	e1000_main.c	2692;"	d	file:
+E1000_TX_FLAGS_VLAN	e1000_main.c	2693;"	d	file:
+E1000_TX_FLAGS_TSO	e1000_main.c	2694;"	d	file:
+E1000_TX_FLAGS_IPV4	e1000_main.c	2695;"	d	file:
+E1000_TX_FLAGS_NO_FCS	e1000_main.c	2696;"	d	file:
+E1000_TX_FLAGS_VLAN_MASK	e1000_main.c	2697;"	d	file:
+E1000_TX_FLAGS_VLAN_SHIFT	e1000_main.c	2698;"	d	file:
+e1000_tso	e1000_main.c	/^static int e1000_tso(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_tx_csum	e1000_main.c	/^static bool e1000_tx_csum(struct e1000_adapter *adapter,$/;"	f	file:
+E1000_MAX_TXD_PWR	e1000_main.c	2825;"	d	file:
+E1000_MAX_DATA_PER_TXD	e1000_main.c	2826;"	d	file:
+e1000_tx_map	e1000_main.c	/^static int e1000_tx_map(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_tx_queue	e1000_main.c	/^static void e1000_tx_queue(struct e1000_adapter *adapter,$/;"	f	file:
+E1000_FIFO_HDR	e1000_main.c	3043;"	d	file:
+E1000_82547_PAD_LEN	e1000_main.c	3044;"	d	file:
+e1000_82547_fifo_workaround	e1000_main.c	/^static int e1000_82547_fifo_workaround(struct e1000_adapter *adapter,$/;"	f	file:
+__e1000_maybe_stop_tx	e1000_main.c	/^static int __e1000_maybe_stop_tx(struct net_device *netdev, int size)$/;"	f	file:
+e1000_maybe_stop_tx	e1000_main.c	/^static int e1000_maybe_stop_tx(struct net_device *netdev,$/;"	f	file:
+TXD_USE_COUNT	e1000_main.c	3104;"	d	file:
+e1000_xmit_frame	e1000_main.c	/^static netdev_tx_t e1000_xmit_frame(struct sk_buff *skb,$/;"	f	file:
+NUM_REGS	e1000_main.c	3279;"	d	file:
+e1000_regdump	e1000_main.c	/^static void e1000_regdump(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_dump	e1000_main.c	/^static void e1000_dump(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_tx_timeout	e1000_main.c	/^static void e1000_tx_timeout(struct net_device *netdev)$/;"	f	file:
+e1000_reset_task	e1000_main.c	/^static void e1000_reset_task(struct work_struct *work)$/;"	f	file:
+e1000_get_stats	e1000_main.c	/^static struct net_device_stats *e1000_get_stats(struct net_device *netdev)$/;"	f	file:
+e1000_change_mtu	e1000_main.c	/^static int e1000_change_mtu(struct net_device *netdev, int new_mtu)$/;"	f	file:
+e1000_update_stats	e1000_main.c	/^void e1000_update_stats(struct e1000_adapter *adapter)$/;"	f
+PHY_IDLE_ERROR_COUNT_MASK	e1000_main.c	3610;"	d	file:
+e1000_intr	e1000_main.c	/^static irqreturn_t e1000_intr(int irq, void *data)$/;"	f	file:
+e1000_clean	e1000_main.c	/^static int e1000_clean(struct napi_struct *napi, int budget)$/;"	f	file:
+e1000_clean_tx_irq	e1000_main.c	/^static bool e1000_clean_tx_irq(struct e1000_adapter *adapter,$/;"	f	file:
+TX_WAKE_THRESHOLD	e1000_main.c	3883;"	d	file:
+e1000_rx_checksum	e1000_main.c	/^static void e1000_rx_checksum(struct e1000_adapter *adapter, u32 status_err,$/;"	f	file:
+e1000_consume_page	e1000_main.c	/^static void e1000_consume_page(struct e1000_rx_buffer *bi, struct sk_buff *skb,$/;"	f	file:
+e1000_receive_skb	e1000_main.c	/^static void e1000_receive_skb(struct e1000_adapter *adapter, u8 status,$/;"	f	file:
+e1000_tbi_adjust_stats	e1000_main.c	/^static void e1000_tbi_adjust_stats(struct e1000_hw *hw,$/;"	f	file:
+e1000_tbi_should_accept	e1000_main.c	/^static bool e1000_tbi_should_accept(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_alloc_rx_skb	e1000_main.c	/^static struct sk_buff *e1000_alloc_rx_skb(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_clean_jumbo_rx_irq	e1000_main.c	/^static bool e1000_clean_jumbo_rx_irq(struct e1000_adapter *adapter,$/;"	f	file:
+rxtop	e1000_main.c	4192;"	d	file:
+e1000_copybreak	e1000_main.c	/^static struct sk_buff *e1000_copybreak(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_clean_rx_irq	e1000_main.c	/^static bool e1000_clean_rx_irq(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_alloc_jumbo_rx_buffers	e1000_main.c	/^e1000_alloc_jumbo_rx_buffers(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_alloc_rx_buffers	e1000_main.c	/^static void e1000_alloc_rx_buffers(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_smartspeed	e1000_main.c	/^static void e1000_smartspeed(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_ioctl	e1000_main.c	/^static int e1000_ioctl(struct net_device *netdev, struct ifreq *ifr, int cmd)$/;"	f	file:
+e1000_mii_ioctl	e1000_main.c	/^static int e1000_mii_ioctl(struct net_device *netdev, struct ifreq *ifr,$/;"	f	file:
+e1000_pci_set_mwi	e1000_main.c	/^void e1000_pci_set_mwi(struct e1000_hw *hw)$/;"	f
+e1000_pci_clear_mwi	e1000_main.c	/^void e1000_pci_clear_mwi(struct e1000_hw *hw)$/;"	f
+e1000_pcix_get_mmrbc	e1000_main.c	/^int e1000_pcix_get_mmrbc(struct e1000_hw *hw)$/;"	f
+e1000_pcix_set_mmrbc	e1000_main.c	/^void e1000_pcix_set_mmrbc(struct e1000_hw *hw, int mmrbc)$/;"	f
+e1000_io_write	e1000_main.c	/^void e1000_io_write(struct e1000_hw *hw, unsigned long port, u32 value)$/;"	f
+e1000_vlan_used	e1000_main.c	/^static bool e1000_vlan_used(struct e1000_adapter *adapter)$/;"	f	file:
+__e1000_vlan_mode	e1000_main.c	/^static void __e1000_vlan_mode(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_vlan_filter_on_off	e1000_main.c	/^static void e1000_vlan_filter_on_off(struct e1000_adapter *adapter,$/;"	f	file:
+e1000_vlan_mode	e1000_main.c	/^static void e1000_vlan_mode(struct net_device *netdev,$/;"	f	file:
+e1000_vlan_rx_add_vid	e1000_main.c	/^static int e1000_vlan_rx_add_vid(struct net_device *netdev,$/;"	f	file:
+e1000_vlan_rx_kill_vid	e1000_main.c	/^static int e1000_vlan_rx_kill_vid(struct net_device *netdev,$/;"	f	file:
+e1000_restore_vlan	e1000_main.c	/^static void e1000_restore_vlan(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_set_spd_dplx	e1000_main.c	/^int e1000_set_spd_dplx(struct e1000_adapter *adapter, u32 spd, u8 dplx)$/;"	f
+__e1000_shutdown	e1000_main.c	/^static int __e1000_shutdown(struct pci_dev *pdev, bool *enable_wake)$/;"	f	file:
+E1000_CTRL_ADVD3WUC	e1000_main.c	5101;"	d	file:
+E1000_CTRL_EN_PHY_PWR_MGMT	e1000_main.c	5103;"	d	file:
+e1000_suspend	e1000_main.c	/^static int e1000_suspend(struct pci_dev *pdev, pm_message_t state)$/;"	f	file:
+e1000_resume	e1000_main.c	/^static int e1000_resume(struct pci_dev *pdev)$/;"	f	file:
+e1000_shutdown	e1000_main.c	/^static void e1000_shutdown(struct pci_dev *pdev)$/;"	f	file:
+e1000_netpoll	e1000_main.c	/^static void e1000_netpoll(struct net_device *netdev)$/;"	f	file:
+e1000_io_error_detected	e1000_main.c	/^static pci_ers_result_t e1000_io_error_detected(struct pci_dev *pdev,$/;"	f	file:
+e1000_io_slot_reset	e1000_main.c	/^static pci_ers_result_t e1000_io_slot_reset(struct pci_dev *pdev)$/;"	f	file:
+e1000_io_resume	e1000_main.c	/^static void e1000_io_resume(struct pci_dev *pdev)$/;"	f	file:
+_E1000_H_	e1000.h	33;"	d
+BAR_0	e1000.h	72;"	d
+BAR_1	e1000.h	73;"	d
+BAR_5	e1000.h	74;"	d
+INTEL_E1000_ETHERNET_DEVICE	e1000.h	76;"	d
+E1000_MAX_INTR	e1000.h	83;"	d
+E1000_CHECK_RESET_COUNT	e1000.h	88;"	d
+E1000_DEFAULT_TXD	e1000.h	91;"	d
+E1000_MAX_TXD	e1000.h	92;"	d
+E1000_MIN_TXD	e1000.h	93;"	d
+E1000_MAX_82544_TXD	e1000.h	94;"	d
+E1000_DEFAULT_RXD	e1000.h	96;"	d
+E1000_MAX_RXD	e1000.h	97;"	d
+E1000_MIN_RXD	e1000.h	98;"	d
+E1000_MAX_82544_RXD	e1000.h	99;"	d
+E1000_MIN_ITR_USECS	e1000.h	101;"	d
+E1000_MAX_ITR_USECS	e1000.h	102;"	d
+MAXIMUM_ETHERNET_VLAN_SIZE	e1000.h	105;"	d
+E1000_RXBUFFER_128	e1000.h	108;"	d
+E1000_RXBUFFER_256	e1000.h	109;"	d
+E1000_RXBUFFER_512	e1000.h	110;"	d
+E1000_RXBUFFER_1024	e1000.h	111;"	d
+E1000_RXBUFFER_2048	e1000.h	112;"	d
+E1000_RXBUFFER_4096	e1000.h	113;"	d
+E1000_RXBUFFER_8192	e1000.h	114;"	d
+E1000_RXBUFFER_16384	e1000.h	115;"	d
+E1000_SMARTSPEED_DOWNSHIFT	e1000.h	118;"	d
+E1000_SMARTSPEED_MAX	e1000.h	119;"	d
+E1000_PBA_BYTES_SHIFT	e1000.h	122;"	d
+E1000_TX_HEAD_ADDR_SHIFT	e1000.h	123;"	d
+E1000_PBA_TX_MASK	e1000.h	124;"	d
+E1000_FC_HIGH_DIFF	e1000.h	127;"	d
+E1000_FC_LOW_DIFF	e1000.h	128;"	d
+E1000_FC_PAUSE_TIME	e1000.h	130;"	d
+E1000_TX_QUEUE_WAKE	e1000.h	133;"	d
+E1000_RX_BUFFER_WRITE	e1000.h	135;"	d
+AUTO_ALL_MODES	e1000.h	137;"	d
+E1000_EEPROM_82544_APM	e1000.h	138;"	d
+E1000_EEPROM_APME	e1000.h	139;"	d
+E1000_MASTER_SLAVE	e1000.h	143;"	d
+E1000_MNG_VLAN_NONE	e1000.h	146;"	d
+e1000_tx_buffer	e1000.h	/^struct e1000_tx_buffer {$/;"	s
+skb	e1000.h	/^	struct sk_buff *skb;$/;"	m	struct:e1000_tx_buffer	typeref:struct:e1000_tx_buffer::sk_buff
+dma	e1000.h	/^	dma_addr_t dma;$/;"	m	struct:e1000_tx_buffer
+time_stamp	e1000.h	/^	unsigned long time_stamp;$/;"	m	struct:e1000_tx_buffer
+length	e1000.h	/^	u16 length;$/;"	m	struct:e1000_tx_buffer
+next_to_watch	e1000.h	/^	u16 next_to_watch;$/;"	m	struct:e1000_tx_buffer
+mapped_as_page	e1000.h	/^	bool mapped_as_page;$/;"	m	struct:e1000_tx_buffer
+segs	e1000.h	/^	unsigned short segs;$/;"	m	struct:e1000_tx_buffer
+bytecount	e1000.h	/^	unsigned int bytecount;$/;"	m	struct:e1000_tx_buffer
+e1000_rx_buffer	e1000.h	/^struct e1000_rx_buffer {$/;"	s
+page	e1000.h	/^		struct page *page; \/* jumbo: alloc_page *\/$/;"	m	union:e1000_rx_buffer::__anon1	typeref:struct:e1000_rx_buffer::__anon1::page
+data	e1000.h	/^		u8 *data; \/* else, netdev_alloc_frag *\/$/;"	m	union:e1000_rx_buffer::__anon1
+rxbuf	e1000.h	/^	} rxbuf;$/;"	m	struct:e1000_rx_buffer	typeref:union:e1000_rx_buffer::__anon1
+dma	e1000.h	/^	dma_addr_t dma;$/;"	m	struct:e1000_rx_buffer
+e1000_tx_ring	e1000.h	/^struct e1000_tx_ring {$/;"	s
+desc	e1000.h	/^	void *desc;$/;"	m	struct:e1000_tx_ring
+dma	e1000.h	/^	dma_addr_t dma;$/;"	m	struct:e1000_tx_ring
+size	e1000.h	/^	unsigned int size;$/;"	m	struct:e1000_tx_ring
+count	e1000.h	/^	unsigned int count;$/;"	m	struct:e1000_tx_ring
+next_to_use	e1000.h	/^	unsigned int next_to_use;$/;"	m	struct:e1000_tx_ring
+next_to_clean	e1000.h	/^	unsigned int next_to_clean;$/;"	m	struct:e1000_tx_ring
+buffer_info	e1000.h	/^	struct e1000_tx_buffer *buffer_info;$/;"	m	struct:e1000_tx_ring	typeref:struct:e1000_tx_ring::e1000_tx_buffer
+tdh	e1000.h	/^	u16 tdh;$/;"	m	struct:e1000_tx_ring
+tdt	e1000.h	/^	u16 tdt;$/;"	m	struct:e1000_tx_ring
+last_tx_tso	e1000.h	/^	bool last_tx_tso;$/;"	m	struct:e1000_tx_ring
+e1000_rx_ring	e1000.h	/^struct e1000_rx_ring {$/;"	s
+desc	e1000.h	/^	void *desc;$/;"	m	struct:e1000_rx_ring
+dma	e1000.h	/^	dma_addr_t dma;$/;"	m	struct:e1000_rx_ring
+size	e1000.h	/^	unsigned int size;$/;"	m	struct:e1000_rx_ring
+count	e1000.h	/^	unsigned int count;$/;"	m	struct:e1000_rx_ring
+next_to_use	e1000.h	/^	unsigned int next_to_use;$/;"	m	struct:e1000_rx_ring
+next_to_clean	e1000.h	/^	unsigned int next_to_clean;$/;"	m	struct:e1000_rx_ring
+buffer_info	e1000.h	/^	struct e1000_rx_buffer *buffer_info;$/;"	m	struct:e1000_rx_ring	typeref:struct:e1000_rx_ring::e1000_rx_buffer
+rx_skb_top	e1000.h	/^	struct sk_buff *rx_skb_top;$/;"	m	struct:e1000_rx_ring	typeref:struct:e1000_rx_ring::sk_buff
+cpu	e1000.h	/^	int cpu;$/;"	m	struct:e1000_rx_ring
+rdh	e1000.h	/^	u16 rdh;$/;"	m	struct:e1000_rx_ring
+rdt	e1000.h	/^	u16 rdt;$/;"	m	struct:e1000_rx_ring
+E1000_DESC_UNUSED	e1000.h	215;"	d
+E1000_RX_DESC_EXT	e1000.h	219;"	d
+E1000_GET_DESC	e1000.h	221;"	d
+E1000_RX_DESC	e1000.h	222;"	d
+E1000_TX_DESC	e1000.h	223;"	d
+E1000_CONTEXT_DESC	e1000.h	224;"	d
+e1000_adapter	e1000.h	/^struct e1000_adapter {$/;"	s
+active_vlans	e1000.h	/^	unsigned long active_vlans[BITS_TO_LONGS(VLAN_N_VID)];$/;"	m	struct:e1000_adapter
+mng_vlan_id	e1000.h	/^	u16 mng_vlan_id;$/;"	m	struct:e1000_adapter
+bd_number	e1000.h	/^	u32 bd_number;$/;"	m	struct:e1000_adapter
+rx_buffer_len	e1000.h	/^	u32 rx_buffer_len;$/;"	m	struct:e1000_adapter
+wol	e1000.h	/^	u32 wol;$/;"	m	struct:e1000_adapter
+smartspeed	e1000.h	/^	u32 smartspeed;$/;"	m	struct:e1000_adapter
+en_mng_pt	e1000.h	/^	u32 en_mng_pt;$/;"	m	struct:e1000_adapter
+link_speed	e1000.h	/^	u16 link_speed;$/;"	m	struct:e1000_adapter
+link_duplex	e1000.h	/^	u16 link_duplex;$/;"	m	struct:e1000_adapter
+stats_lock	e1000.h	/^	spinlock_t stats_lock;$/;"	m	struct:e1000_adapter
+total_tx_bytes	e1000.h	/^	unsigned int total_tx_bytes;$/;"	m	struct:e1000_adapter
+total_tx_packets	e1000.h	/^	unsigned int total_tx_packets;$/;"	m	struct:e1000_adapter
+total_rx_bytes	e1000.h	/^	unsigned int total_rx_bytes;$/;"	m	struct:e1000_adapter
+total_rx_packets	e1000.h	/^	unsigned int total_rx_packets;$/;"	m	struct:e1000_adapter
+itr	e1000.h	/^	u32 itr;$/;"	m	struct:e1000_adapter
+itr_setting	e1000.h	/^	u32 itr_setting;$/;"	m	struct:e1000_adapter
+tx_itr	e1000.h	/^	u16 tx_itr;$/;"	m	struct:e1000_adapter
+rx_itr	e1000.h	/^	u16 rx_itr;$/;"	m	struct:e1000_adapter
+fc_autoneg	e1000.h	/^	u8 fc_autoneg;$/;"	m	struct:e1000_adapter
+tx_ring	e1000.h	/^	struct e1000_tx_ring *tx_ring;      \/* One per active queue *\/$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::e1000_tx_ring
+restart_queue	e1000.h	/^	unsigned int restart_queue;$/;"	m	struct:e1000_adapter
+txd_cmd	e1000.h	/^	u32 txd_cmd;$/;"	m	struct:e1000_adapter
+tx_int_delay	e1000.h	/^	u32 tx_int_delay;$/;"	m	struct:e1000_adapter
+tx_abs_int_delay	e1000.h	/^	u32 tx_abs_int_delay;$/;"	m	struct:e1000_adapter
+gotcl	e1000.h	/^	u32 gotcl;$/;"	m	struct:e1000_adapter
+gotcl_old	e1000.h	/^	u64 gotcl_old;$/;"	m	struct:e1000_adapter
+tpt_old	e1000.h	/^	u64 tpt_old;$/;"	m	struct:e1000_adapter
+colc_old	e1000.h	/^	u64 colc_old;$/;"	m	struct:e1000_adapter
+tx_timeout_count	e1000.h	/^	u32 tx_timeout_count;$/;"	m	struct:e1000_adapter
+tx_fifo_head	e1000.h	/^	u32 tx_fifo_head;$/;"	m	struct:e1000_adapter
+tx_head_addr	e1000.h	/^	u32 tx_head_addr;$/;"	m	struct:e1000_adapter
+tx_fifo_size	e1000.h	/^	u32 tx_fifo_size;$/;"	m	struct:e1000_adapter
+tx_timeout_factor	e1000.h	/^	u8  tx_timeout_factor;$/;"	m	struct:e1000_adapter
+tx_fifo_stall	e1000.h	/^	atomic_t tx_fifo_stall;$/;"	m	struct:e1000_adapter
+pcix_82544	e1000.h	/^	bool pcix_82544;$/;"	m	struct:e1000_adapter
+detect_tx_hung	e1000.h	/^	bool detect_tx_hung;$/;"	m	struct:e1000_adapter
+dump_buffers	e1000.h	/^	bool dump_buffers;$/;"	m	struct:e1000_adapter
+clean_rx	e1000.h	/^	bool (*clean_rx)(struct e1000_adapter *adapter,$/;"	m	struct:e1000_adapter
+alloc_rx_buf	e1000.h	/^	void (*alloc_rx_buf)(struct e1000_adapter *adapter,$/;"	m	struct:e1000_adapter
+rx_ring	e1000.h	/^	struct e1000_rx_ring *rx_ring;      \/* One per active queue *\/$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::e1000_rx_ring
+napi	e1000.h	/^	struct napi_struct napi;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::napi_struct
+num_tx_queues	e1000.h	/^	int num_tx_queues;$/;"	m	struct:e1000_adapter
+num_rx_queues	e1000.h	/^	int num_rx_queues;$/;"	m	struct:e1000_adapter
+hw_csum_err	e1000.h	/^	u64 hw_csum_err;$/;"	m	struct:e1000_adapter
+hw_csum_good	e1000.h	/^	u64 hw_csum_good;$/;"	m	struct:e1000_adapter
+alloc_rx_buff_failed	e1000.h	/^	u32 alloc_rx_buff_failed;$/;"	m	struct:e1000_adapter
+rx_int_delay	e1000.h	/^	u32 rx_int_delay;$/;"	m	struct:e1000_adapter
+rx_abs_int_delay	e1000.h	/^	u32 rx_abs_int_delay;$/;"	m	struct:e1000_adapter
+rx_csum	e1000.h	/^	bool rx_csum;$/;"	m	struct:e1000_adapter
+gorcl	e1000.h	/^	u32 gorcl;$/;"	m	struct:e1000_adapter
+gorcl_old	e1000.h	/^	u64 gorcl_old;$/;"	m	struct:e1000_adapter
+netdev	e1000.h	/^	struct net_device *netdev;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::net_device
+pdev	e1000.h	/^	struct pci_dev *pdev;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::pci_dev
+hw	e1000.h	/^	struct e1000_hw hw;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::e1000_hw
+stats	e1000.h	/^	struct e1000_hw_stats stats;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::e1000_hw_stats
+phy_info	e1000.h	/^	struct e1000_phy_info phy_info;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::e1000_phy_info
+phy_stats	e1000.h	/^	struct e1000_phy_stats phy_stats;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::e1000_phy_stats
+test_icr	e1000.h	/^	u32 test_icr;$/;"	m	struct:e1000_adapter
+test_tx_ring	e1000.h	/^	struct e1000_tx_ring test_tx_ring;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::e1000_tx_ring
+test_rx_ring	e1000.h	/^	struct e1000_rx_ring test_rx_ring;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::e1000_rx_ring
+msg_enable	e1000.h	/^	int msg_enable;$/;"	m	struct:e1000_adapter
+tso_force	e1000.h	/^	bool tso_force;$/;"	m	struct:e1000_adapter
+smart_power_down	e1000.h	/^	bool smart_power_down;	\/* phy smart power down *\/$/;"	m	struct:e1000_adapter
+quad_port_a	e1000.h	/^	bool quad_port_a;$/;"	m	struct:e1000_adapter
+flags	e1000.h	/^	unsigned long flags;$/;"	m	struct:e1000_adapter
+eeprom_wol	e1000.h	/^	u32 eeprom_wol;$/;"	m	struct:e1000_adapter
+bars	e1000.h	/^	int bars;$/;"	m	struct:e1000_adapter
+need_ioport	e1000.h	/^	int need_ioport;$/;"	m	struct:e1000_adapter
+discarding	e1000.h	/^	bool discarding;$/;"	m	struct:e1000_adapter
+reset_task	e1000.h	/^	struct work_struct reset_task;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::work_struct
+watchdog_task	e1000.h	/^	struct delayed_work watchdog_task;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::delayed_work
+fifo_stall_task	e1000.h	/^	struct delayed_work fifo_stall_task;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::delayed_work
+phy_info_task	e1000.h	/^	struct delayed_work phy_info_task;$/;"	m	struct:e1000_adapter	typeref:struct:e1000_adapter::delayed_work
+e1000_state_t	e1000.h	/^enum e1000_state_t {$/;"	g
+__E1000_TESTING	e1000.h	/^	__E1000_TESTING,$/;"	e	enum:e1000_state_t
+__E1000_RESETTING	e1000.h	/^	__E1000_RESETTING,$/;"	e	enum:e1000_state_t
+__E1000_DOWN	e1000.h	/^	__E1000_DOWN$/;"	e	enum:e1000_state_t
+pr_fmt	e1000.h	334;"	d
+pr_fmt	e1000.h	335;"	d
+e_dbg	e1000.h	338;"	d
+e_err	e1000.h	340;"	d
+e_info	e1000.h	342;"	d
+e_warn	e1000.h	344;"	d
+e_notice	e1000.h	346;"	d
+e_dev_info	e1000.h	348;"	d
+e_dev_warn	e1000.h	350;"	d
+e_dev_err	e1000.h	352;"	d
+E1000_MAX_NIC	e1000_param.c	35;"	d	file:
+OPTION_UNSET	e1000_param.c	37;"	d	file:
+OPTION_DISABLED	e1000_param.c	38;"	d	file:
+OPTION_ENABLED	e1000_param.c	39;"	d	file:
+E1000_PARAM_INIT	e1000_param.c	46;"	d	file:
+E1000_PARAM	e1000_param.c	47;"	d	file:
+AUTONEG_ADV_DEFAULT	e1000_param.c	109;"	d	file:
+AUTONEG_ADV_MASK	e1000_param.c	110;"	d	file:
+FLOW_CONTROL_DEFAULT	e1000_param.c	123;"	d	file:
+DEFAULT_TIDV	e1000_param.c	142;"	d	file:
+MAX_TXDELAY	e1000_param.c	143;"	d	file:
+MIN_TXDELAY	e1000_param.c	144;"	d	file:
+DEFAULT_TADV	e1000_param.c	151;"	d	file:
+MAX_TXABSDELAY	e1000_param.c	152;"	d	file:
+MIN_TXABSDELAY	e1000_param.c	153;"	d	file:
+DEFAULT_RDTR	e1000_param.c	161;"	d	file:
+MAX_RXDELAY	e1000_param.c	162;"	d	file:
+MIN_RXDELAY	e1000_param.c	163;"	d	file:
+DEFAULT_RADV	e1000_param.c	170;"	d	file:
+MAX_RXABSDELAY	e1000_param.c	171;"	d	file:
+MIN_RXABSDELAY	e1000_param.c	172;"	d	file:
+DEFAULT_ITR	e1000_param.c	179;"	d	file:
+MAX_ITR	e1000_param.c	180;"	d	file:
+MIN_ITR	e1000_param.c	181;"	d	file:
+e1000_option	e1000_param.c	/^struct e1000_option {$/;"	s	file:
+enable_option	e1000_param.c	/^	enum { enable_option, range_option, list_option } type;$/;"	e	enum:e1000_option::__anon2	file:
+range_option	e1000_param.c	/^	enum { enable_option, range_option, list_option } type;$/;"	e	enum:e1000_option::__anon2	file:
+list_option	e1000_param.c	/^	enum { enable_option, range_option, list_option } type;$/;"	e	enum:e1000_option::__anon2	file:
+type	e1000_param.c	/^	enum { enable_option, range_option, list_option } type;$/;"	m	struct:e1000_option	typeref:enum:e1000_option::__anon2	file:
+name	e1000_param.c	/^	const char *name;$/;"	m	struct:e1000_option	file:
+err	e1000_param.c	/^	const char *err;$/;"	m	struct:e1000_option	file:
+def	e1000_param.c	/^	int def;$/;"	m	struct:e1000_option	file:
+min	e1000_param.c	/^			int min;$/;"	m	struct:e1000_option::__anon3::__anon4	file:
+max	e1000_param.c	/^			int max;$/;"	m	struct:e1000_option::__anon3::__anon4	file:
+r	e1000_param.c	/^		} r;$/;"	m	union:e1000_option::__anon3	typeref:struct:e1000_option::__anon3::__anon4	file:
+nr	e1000_param.c	/^			int nr;$/;"	m	struct:e1000_option::__anon3::__anon5	file:
+e1000_opt_list	e1000_param.c	/^			const struct e1000_opt_list { int i; char *str; } *p;$/;"	s	struct:e1000_option::__anon3::__anon5	file:
+i	e1000_param.c	/^			const struct e1000_opt_list { int i; char *str; } *p;$/;"	m	struct:e1000_option::__anon3::__anon5::e1000_opt_list	file:
+str	e1000_param.c	/^			const struct e1000_opt_list { int i; char *str; } *p;$/;"	m	struct:e1000_option::__anon3::__anon5::e1000_opt_list	file:
+p	e1000_param.c	/^			const struct e1000_opt_list { int i; char *str; } *p;$/;"	m	struct:e1000_option::__anon3::__anon5	typeref:struct:e1000_option::__anon3::__anon5::e1000_opt_list	file:
+l	e1000_param.c	/^		} l;$/;"	m	union:e1000_option::__anon3	typeref:struct:e1000_option::__anon3::__anon5	file:
+arg	e1000_param.c	/^	} arg;$/;"	m	struct:e1000_option	typeref:union:e1000_option::__anon3	file:
+e1000_validate_option	e1000_param.c	/^static int e1000_validate_option(unsigned int *value,$/;"	f	file:
+e1000_check_options	e1000_param.c	/^void e1000_check_options(struct e1000_adapter *adapter)$/;"	f
+e1000_check_fiber_options	e1000_param.c	/^static void e1000_check_fiber_options(struct e1000_adapter *adapter)$/;"	f	file:
+e1000_check_copper_options	e1000_param.c	/^static void e1000_check_copper_options(struct e1000_adapter *adapter)$/;"	f	file:
+AA	e1000_param.c	620;"	d	file:
+NETDEV_STATS	e1000_ethtool.c	/^enum {NETDEV_STATS, E1000_STATS};$/;"	e	enum:__anon6	file:
+E1000_STATS	e1000_ethtool.c	/^enum {NETDEV_STATS, E1000_STATS};$/;"	e	enum:__anon6	file:
+e1000_stats	e1000_ethtool.c	/^struct e1000_stats {$/;"	s	file:
+stat_string	e1000_ethtool.c	/^	char stat_string[ETH_GSTRING_LEN];$/;"	m	struct:e1000_stats	file:
+type	e1000_ethtool.c	/^	int type;$/;"	m	struct:e1000_stats	file:
+sizeof_stat	e1000_ethtool.c	/^	int sizeof_stat;$/;"	m	struct:e1000_stats	file:
+stat_offset	e1000_ethtool.c	/^	int stat_offset;$/;"	m	struct:e1000_stats	file:
+E1000_STAT	e1000_ethtool.c	39;"	d	file:
+E1000_NETDEV_STAT	e1000_ethtool.c	42;"	d	file:
+e1000_gstrings_stats	e1000_ethtool.c	/^static const struct e1000_stats e1000_gstrings_stats[] = {$/;"	v	typeref:struct:e1000_stats	file:
+E1000_QUEUE_STATS_LEN	e1000_ethtool.c	95;"	d	file:
+E1000_GLOBAL_STATS_LEN	e1000_ethtool.c	96;"	d	file:
+E1000_STATS_LEN	e1000_ethtool.c	97;"	d	file:
+e1000_gstrings_test	e1000_ethtool.c	/^static const char e1000_gstrings_test[][ETH_GSTRING_LEN] = {$/;"	v	file:
+E1000_TEST_LEN	e1000_ethtool.c	104;"	d	file:
+e1000_get_settings	e1000_ethtool.c	/^static int e1000_get_settings(struct net_device *netdev,$/;"	f	file:
+e1000_set_settings	e1000_ethtool.c	/^static int e1000_set_settings(struct net_device *netdev,$/;"	f	file:
+e1000_get_link	e1000_ethtool.c	/^static u32 e1000_get_link(struct net_device *netdev)$/;"	f	file:
+e1000_get_pauseparam	e1000_ethtool.c	/^static void e1000_get_pauseparam(struct net_device *netdev,$/;"	f	file:
+e1000_set_pauseparam	e1000_ethtool.c	/^static int e1000_set_pauseparam(struct net_device *netdev,$/;"	f	file:
+e1000_get_msglevel	e1000_ethtool.c	/^static u32 e1000_get_msglevel(struct net_device *netdev)$/;"	f	file:
+e1000_set_msglevel	e1000_ethtool.c	/^static void e1000_set_msglevel(struct net_device *netdev, u32 data)$/;"	f	file:
+e1000_get_regs_len	e1000_ethtool.c	/^static int e1000_get_regs_len(struct net_device *netdev)$/;"	f	file:
+E1000_REGS_LEN	e1000_ethtool.c	341;"	d	file:
+e1000_get_regs	e1000_ethtool.c	/^static void e1000_get_regs(struct net_device *netdev, struct ethtool_regs *regs,$/;"	f	file:
+e1000_get_eeprom_len	e1000_ethtool.c	/^static int e1000_get_eeprom_len(struct net_device *netdev)$/;"	f	file:
+e1000_get_eeprom	e1000_ethtool.c	/^static int e1000_get_eeprom(struct net_device *netdev,$/;"	f	file:
+e1000_set_eeprom	e1000_ethtool.c	/^static int e1000_set_eeprom(struct net_device *netdev,$/;"	f	file:
+e1000_get_drvinfo	e1000_ethtool.c	/^static void e1000_get_drvinfo(struct net_device *netdev,$/;"	f	file:
+e1000_get_ringparam	e1000_ethtool.c	/^static void e1000_get_ringparam(struct net_device *netdev,$/;"	f	file:
+e1000_set_ringparam	e1000_ethtool.c	/^static int e1000_set_ringparam(struct net_device *netdev,$/;"	f	file:
+reg_pattern_test	e1000_ethtool.c	/^static bool reg_pattern_test(struct e1000_adapter *adapter, u64 *data, int reg,$/;"	f	file:
+reg_set_and_check	e1000_ethtool.c	/^static bool reg_set_and_check(struct e1000_adapter *adapter, u64 *data, int reg,$/;"	f	file:
+REG_PATTERN_TEST	e1000_ethtool.c	718;"	d	file:
+REG_SET_AND_CHECK	e1000_ethtool.c	727;"	d	file:
+e1000_reg_test	e1000_ethtool.c	/^static int e1000_reg_test(struct e1000_adapter *adapter, u64 *data)$/;"	f	file:
+e1000_eeprom_test	e1000_ethtool.c	/^static int e1000_eeprom_test(struct e1000_adapter *adapter, u64 *data)$/;"	f	file:
+e1000_test_intr	e1000_ethtool.c	/^static irqreturn_t e1000_test_intr(int irq, void *data)$/;"	f	file:
+e1000_intr_test	e1000_ethtool.c	/^static int e1000_intr_test(struct e1000_adapter *adapter, u64 *data)$/;"	f	file:
+e1000_free_desc_rings	e1000_ethtool.c	/^static void 
