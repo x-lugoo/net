@@ -11,7 +11,6 @@
   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
   FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
   more details.
-		printk("jeff-- printkselectd device id is 0x100f");
 
   You should have received a copy of the GNU General Public License along with
   this program; if not, write to the Free Software Foundation, Inc.,
@@ -977,7 +976,7 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	}
 	if (err)
 		return err;
-	printk("jeff-- only test id =%04X,bar=%d,debug=%d\n",pdev->device,bars,debug);
+	printk(" test id =%04X,bar=%d,debug=%d\n",pdev->device,bars,debug);
 	err = pci_request_selected_regions(pdev, bars, e1000_driver_name);
 	if (err)
 		goto err_pci_reg;
@@ -1226,7 +1225,7 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	/* reset the hardware with the new settings */
 	e1000_reset(adapter);
 
-	strcpy(netdev->name, "eth%d");
+	strcpy(netdev->name, "jeff_net%d");
 	err = register_netdev(netdev);
 	if (err)
 		goto err_register;
@@ -1381,7 +1380,7 @@ static int e1000_open(struct net_device *netdev)
 	struct e1000_hw *hw = &adapter->hw;
 	int err;
 
-	printk("xiehuan e1000 is open\n");
+	printk("xiehuan e1000 is open%s,%d\n",__func__,__LINE__);
 	/* disallow open during test */
 	if (test_bit(__E1000_TESTING, &adapter->flags))
 		return -EBUSY;
@@ -3765,6 +3764,18 @@ void e1000_update_stats(struct e1000_adapter *adapter)
 	spin_unlock_irqrestore(&adapter->stats_lock, flags);
 }
 
+static u32 jntohl(u32 i)
+{
+          u32  ret ;
+	 ret = ( ((0xff000000 )&  (i << 24)) |
+	  ((0x00ff0000 )&  (i << 8)) |
+	 ( (0x0000ff00) &  (i >> 8)) |
+	 ( (0x000000ff) &  (i >> 24)));
+	return ret;
+}
+ 
+
+	    
 static void  print_once(int *i,char *s,...)
 {
 	if(*i == 1){
@@ -3838,15 +3849,20 @@ static irqreturn_t e1000_intr(int irq, void *data)
 static int e1000_clean(struct napi_struct *napi, int budget)
 {
 	static int i= 1;
+	static int count = 0;	
 	struct e1000_adapter *adapter = container_of(napi, struct e1000_adapter,
 
 						     napi);
+	if(i == 1)
+		WARN_ON(1);
+	i = 2;
+	printk("%s,%d\n",__func__,__LINE__);
+	
 	int tx_clean_complete = 0, work_done = 0;
 
 	tx_clean_complete = e1000_clean_tx_irq(adapter, &adapter->tx_ring[0]);
 
 	adapter->clean_rx(adapter, &adapter->rx_ring[0], &work_done, budget);
-	print_once(&i,"\ne1000_clean test,budget=%d,workdont=%d\n",budget,work_done);
 
 	if (!tx_clean_complete)
 		work_done = budget;
@@ -4359,17 +4375,21 @@ static struct sk_buff *e1000_copybreak(struct e1000_adapter *adapter,
 				       u32 length, const void *data)
 {
 	u32 i;
+	static int once = 1;
 	struct sk_buff *skb;
 
 	if (length > copybreak)
 		return NULL;
 	printk("\npack1111111111,length=%d\n",length);
 	for(i = 0;i < length;i++){
-		printk("%04X ",*( ((u32*)data) + i));
+		printk("%08X ",jntohl(*( ((u32*)data) + i)));
 		if((i % 8) == 0)
 			printk("\n");
 	}
 	printk("\npack222222222,length=%d\n",length);
+	if(once == 1)	
+		WARN_ON(1);
+	once = 2;
 	skb = e1000_alloc_rx_skb(adapter, length);
 	if (!skb)
 		return NULL;
