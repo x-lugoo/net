@@ -938,6 +938,19 @@ static int e1000_init_hw_struct(struct e1000_adapter *adapter,
  * The OS initialization, configuring of the adapter private structure,
  * and a hardware reset occur.
  **/
+static int print_dev_resource(struct pci_dev *pdev)
+{
+	int i;
+
+	if(!pdev){
+		printk("pdev is NULL\n");
+		return -1;
+	}
+	for(i = 0;i < sizeof(pdev->resource)/sizeof(pdev->resource[0]);i++)
+		printk("xiehuan index[%d],start=%08X,end=%08X\n",i,pdev->resource[i].start,pdev->resource[i].end);
+	return 0;
+}
+
 static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 {
 	struct net_device *netdev;
@@ -952,12 +965,9 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	u16 eeprom_apme_mask = E1000_EEPROM_APME;
 	int bars, need_ioport;
 
+	print_dev_resource(pdev);
 	/* do not allocate ioport bars when not needed */
 	need_ioport = e1000_is_need_ioport(pdev);
-	if(pdev->device == E1000_DEV_ID_82545EM_COPPER){
-		printk("jeff-- printkselectd device id is 0x100f");
-	}
-		printk("jeff-- only test id =%04X,debug=%d",pdev->device,debug);
 	if (need_ioport) {
 		bars = pci_select_bars(pdev, IORESOURCE_MEM | IORESOURCE_IO);
 		err = pci_enable_device(pdev);
@@ -967,11 +977,10 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	}
 	if (err)
 		return err;
-
+	printk("jeff-- only test id =%04X,bar=%d,debug=%d\n",pdev->device,bars,debug);
 	err = pci_request_selected_regions(pdev, bars, e1000_driver_name);
 	if (err)
 		goto err_pci_reg;
-
 	pci_set_master(pdev);
 	err = pci_save_state(pdev);
 	if (err)
@@ -997,6 +1006,7 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 
 	err = -EIO;
 	hw->hw_addr = pci_ioremap_bar(pdev, BAR_0);
+	printk("xiehuan hw_addr=%08X\n",hw->hw_addr);
 	if (!hw->hw_addr)
 		goto err_ioremap;
 
@@ -1056,7 +1066,7 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 		if (!hw->ce4100_gbe_mdio_base_virt)
 			goto err_mdio_ioremap;
 	}
-
+	printk("xiehuan hw->ce4100_gbe_mdio_base_virt=%08X\n",hw->ce4100_gbe_mdio_base_virt);
 	if (hw->mac_type >= e1000_82543) {
 		netdev->hw_features = NETIF_F_SG |
 				   NETIF_F_HW_CSUM |
@@ -1371,6 +1381,7 @@ static int e1000_open(struct net_device *netdev)
 	struct e1000_hw *hw = &adapter->hw;
 	int err;
 
+	printk("xiehuan e1000 is open\n");
 	/* disallow open during test */
 	if (test_bit(__E1000_TESTING, &adapter->flags))
 		return -EBUSY;
@@ -3754,6 +3765,16 @@ void e1000_update_stats(struct e1000_adapter *adapter)
 	spin_unlock_irqrestore(&adapter->stats_lock, flags);
 }
 
+static void  print_once(int *i,char *s,...)
+{
+	if(*i == 1){
+	*i = 2;
+	va_list args;
+	va_start(args,s);
+	vprintk(s,args);
+	va_end(args);
+}
+}
 /**
  * e1000_intr - Interrupt Handler
  * @irq: interrupt number
@@ -3764,8 +3785,11 @@ static irqreturn_t e1000_intr(int irq, void *data)
 	struct net_device *netdev = data;
 	struct e1000_adapter *adapter = netdev_priv(netdev);
 	struct e1000_hw *hw = &adapter->hw;
+	static 	int i = 1,i1 = 1,i2 = 1,i3 = 1;
 	u32 icr = er32(ICR);
 
+		
+	print_once(&i,"e1000_intr,test\n");
 	if (unlikely((!icr)))
 		return IRQ_NONE;  /* Not our interrupt */
 
@@ -3788,6 +3812,7 @@ static irqreturn_t e1000_intr(int irq, void *data)
 	E1000_WRITE_FLUSH();
 
 	if (likely(napi_schedule_prep(&adapter->napi))) {
+		print_once(&i1,"e1000_intr,testi1\n");
 		adapter->total_tx_bytes = 0;
 		adapter->total_tx_packets = 0;
 		adapter->total_rx_bytes = 0;
@@ -3797,10 +3822,12 @@ static irqreturn_t e1000_intr(int irq, void *data)
 		/* this really should not happen! if it does it is basically a
 		 * bug, but not a hard error, so enable ints and continue
 		 */
+		print_once(&i2,"e1000_intr,testi2\n");
 		if (!test_bit(__E1000_DOWN, &adapter->flags))
 			e1000_irq_enable(adapter);
 	}
 
+	print_once(&i3,",test3 tx_bytes=%ld",adapter->total_tx_bytes);
 	return IRQ_HANDLED;
 }
 
@@ -3810,13 +3837,16 @@ static irqreturn_t e1000_intr(int irq, void *data)
  **/
 static int e1000_clean(struct napi_struct *napi, int budget)
 {
+	static int i= 1;
 	struct e1000_adapter *adapter = container_of(napi, struct e1000_adapter,
+
 						     napi);
 	int tx_clean_complete = 0, work_done = 0;
 
 	tx_clean_complete = e1000_clean_tx_irq(adapter, &adapter->tx_ring[0]);
 
 	adapter->clean_rx(adapter, &adapter->rx_ring[0], &work_done, budget);
+	print_once(&i,"\ne1000_clean test,budget=%d,workdont=%d\n",budget,work_done);
 
 	if (!tx_clean_complete)
 		work_done = budget;
@@ -4147,6 +4177,8 @@ static bool e1000_clean_jumbo_rx_irq(struct e1000_adapter *adapter,
 	rx_desc = E1000_RX_DESC(*rx_ring, i);
 	buffer_info = &rx_ring->buffer_info[i];
 
+	printk("xiehuan,rx_irq\n");
+	e_err(drv,"xiehuan,rx_irq,err\n");
 	while (rx_desc->status & E1000_RXD_STAT_DD) {
 		struct sk_buff *skb;
 		u8 status;
@@ -4166,6 +4198,7 @@ static bool e1000_clean_jumbo_rx_irq(struct e1000_adapter *adapter,
 
 		cleaned = true;
 		cleaned_count++;
+		printk("xiehuan,adapter->rx_buffer_len=%08X\n",adapter->rx_buffer_len);
 		dma_unmap_page(&pdev->dev, buffer_info->dma,
 			       adapter->rx_buffer_len, DMA_FROM_DEVICE);
 		buffer_info->dma = 0;
@@ -4325,11 +4358,18 @@ static struct sk_buff *e1000_copybreak(struct e1000_adapter *adapter,
 				       struct e1000_rx_buffer *buffer_info,
 				       u32 length, const void *data)
 {
+	u32 i;
 	struct sk_buff *skb;
 
 	if (length > copybreak)
 		return NULL;
-
+	printk("\npack1111111111,length=%d\n",length);
+	for(i = 0;i < length;i++){
+		printk("%04X ",*( ((u32*)data) + i));
+		if((i % 8) == 0)
+			printk("\n");
+	}
+	printk("\npack222222222,length=%d\n",length);
 	skb = e1000_alloc_rx_skb(adapter, length);
 	if (!skb)
 		return NULL;
@@ -4353,12 +4393,12 @@ static bool e1000_clean_rx_irq(struct e1000_adapter *adapter,
 			       struct e1000_rx_ring *rx_ring,
 			       int *work_done, int work_to_do)
 {
+	static int i = 1;
 	struct net_device *netdev = adapter->netdev;
 	struct pci_dev *pdev = adapter->pdev;
 	struct e1000_rx_desc *rx_desc, *next_rxd;
 	struct e1000_rx_buffer *buffer_info, *next_buffer;
 	u32 length;
-	unsigned int i;
 	int cleaned_count = 0;
 	bool cleaned = false;
 	unsigned int total_rx_bytes=0, total_rx_packets=0;
@@ -5227,6 +5267,7 @@ static void e1000_shutdown(struct pci_dev *pdev)
 static void e1000_netpoll(struct net_device *netdev)
 {
 	struct e1000_adapter *adapter = netdev_priv(netdev);
+	printk("xiehuan,poll\n");
 
 	disable_irq(adapter->pdev->irq);
 	e1000_intr(adapter->pdev->irq, netdev);

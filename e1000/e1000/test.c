@@ -4,8 +4,9 @@
 int main(void)
 {
 	char *p = "test";
+	char name[20];
 	
-	printf("p=%pM\n",p);
+	printf("name[0]=%d\n",sizeof(name[0]));
 	return 0;
 }
 
