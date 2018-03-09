@@ -8,6 +8,6 @@ KDIR	:= /lib/modules/$(shell uname -r)/build
 PWD	:= $(shell pwd)
 default:	
 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules 
-#	rm -r .tmp_versions *odule* *.mod.c .*.cmd *.o 
+	rm -r .tmp_versions *odule* *.mod.c .*.cmd *.o 
 
 
