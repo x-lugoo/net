@@ -1,1 +1,0 @@
-cmd_/home/jeff/git/net/e1000/e1000/e1000_jeff.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/jeff/git/net/e1000/e1000/e1000_jeff.ko /home/jeff/git/net/e1000/e1000/e1000_jeff.o /home/jeff/git/net/e1000/e1000/e1000_jeff.mod.o
