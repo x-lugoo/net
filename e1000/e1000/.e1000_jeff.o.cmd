@@ -1,0 +1,1 @@
+cmd_/home/jeff/git/net/e1000/e1000/e1000_jeff.o := ld -m elf_x86_64   -r -o /home/jeff/git/net/e1000/e1000/e1000_jeff.o /home/jeff/git/net/e1000/e1000/e1000_main.o /home/jeff/git/net/e1000/e1000/e1000_hw.o /home/jeff/git/net/e1000/e1000/e1000_ethtool.o /home/jeff/git/net/e1000/e1000/e1000_param.o 

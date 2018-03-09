@@ -1,0 +1,43 @@
+66.366333] e1000_jeff: Copyright (c) 1999-2006 Intel Corporation.
+[   66.366374] xiehuan index[0],start=FD5C0000,end=FD5DFFFF
+[   66.366376] xiehuan index[1],start=00000000,end=00000000
+[   66.366378] xiehuan index[2],start=FDFF0000,end=FDFFFFFF
+[   66.366379] xiehuan index[3],start=00000000,end=00000000
+[   66.366380] xiehuan index[4],start=00002000,end=0000203F
+[   66.366381] xiehuan index[5],start=00000000,end=00000000
+[   66.366382] xiehuan index[6],start=FD500000,end=FD50FFFF
+[   66.366384] xiehuan index[7],start=00000000,end=00000000
+[   66.366385] xiehuan index[8],start=00000000,end=00000000
+[   66.366386] xiehuan index[9],start=00000000,end=00000000
+[   66.366387] xiehuan index[10],start=00000000,end=00000000
+[   66.366388] xiehuan index[11],start=00000000,end=00000000
+[   66.366389] xiehuan index[12],start=00000000,end=00000000
+[   66.366391] xiehuan index[13],start=00000000,end=00000000
+[   66.366392] xiehuan index[14],start=00000000,end=00000000
+[   66.366393] xiehuan index[15],start=00000000,end=00000000
+[   66.366394] xiehuan index[16],start=00000000,end=00000000
+[   66.366858] need_ioport=1,bars=00000055,debuglevel=-1
+[   66.368135] hw_addr=00D00000
+[   66.368141] e1000_jeff 0000:02:01.0 (unnamed net_device) (uninitialized): iobase=8192
+[   66.368221] hw bus_type=1
+[   66.368223] watchdog_Time=1250,pci_using_dac=0
+[   66.730158] e1000_jeff 0000:02:01.0 jeff_net0: (PCI:66MHz:32-bit) 00:0c:29:29:31:84
+[   66.730162] e1000_jeff 0000:02:01.0 jeff_net0: Intel(R) PRO/1000 Network Connection
+[   66.733951] xiehuan e1000 is opene1000_open,1399
+[   66.735567] e1000_intr,test
+[   66.735576] e1000_intr,testi1
+[   66.735577] ,test3 tx_bytes=0e1000_clean,3875
+[   66.735621] e1000_clean,3875
+[   66.738063] IPv6: ADDRCONF(NETDEV_UP): jeff_net0: link is not ready
+[   66.738706] e1000_jeff: jeff_net0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: None
+[   66.739597] e1000_clean,3875
+[   66.739635] IPv6: ADDRCONF(NETDEV_CHANGE): jeff_net0: link becomes ready
+[   66.745749] e1000_clean,3875
+[   66.758499] e1000_clean,3875
+[   66.769877] e1000_clean,3875
+[   66.771387] e1000_clean,3875
+[   66.905570] e1000_clean,3875
+[   67.324033] e1000_clean,3875
+[   67.324547] e1000_clean,3875
+[   67.325940] e1000_clean,3875
+
