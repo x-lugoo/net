@@ -1,7 +1,7 @@
 CONFIG_MODULE_SIG=n
 obj-m	:= e1000_jeff.o
 e1000_jeff-objs:=e1000_main.o e1000_hw.o e1000_ethtool.o e1000_param.o
-MY_CFLAGS += -g -DDEBUG 
+MY_CFLAGS += -g -DDEBUG_SKB_TX
 ccflags-y += $(MY_CFLAGS)
 CC +=$(MY_CFLAGS)
 KDIR	:= /lib/modules/$(shell uname -r)/build

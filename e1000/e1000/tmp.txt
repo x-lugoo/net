@@ -1,0 +1,31 @@
+ 4405.488437] e1000_jeff: change mac address e1000_set_mac 2260
+[ 4405.488442] ------------[ cut here ]------------
+[ 4405.488454] WARNING: CPU: 0 PID: 5384 at /home/jeff/git/net/e1000/e1000/e1000_main.c:2261 e1000_set_mac+0x53/0xf0 [e1000_jeff]()
+[ 4405.488456] Modules linked in: e1000_jeff(OE) vmw_vsock_vmci_transport vsock xt_conntrack ipt_MASQUERADE nf_nat_masquerade_ipv4 iptable_nat nf_conntrack_ipv4 nf_defrag_ipv4 nf_nat_ipv4 xt_addrtype iptable_filter ip_tables x_tables nf_nat nf_conntrack br_netfilter bridge stp llc aufs nfnetlink_queue nfnetlink_log nfnetlink hid_generic vmw_balloon coretemp snd_ens1371 crct10dif_pclmul snd_ac97_codec crc32_pclmul gameport cryptd ac97_bus snd_pcm snd_seq_midi snd_seq_midi_event snd_rawmidi input_leds joydev serio_raw snd_seq snd_seq_device snd_timer vmwgfx snd ttm drm_kms_helper usbhid hid drm soundcore fb_sys_fops syscopyarea sysfillrect sysimgblt nfit vmw_vmci i2c_piix4 shpchp rfcomm bnep bluetooth 8250_fintek mac_hid parport_pc ppdev lp parport psmouse ahci libahci mptspi mptscsih mptbase pata_acpi scsi_transport_spi fjes vmw_pvscsi vmxnet3 [last unloaded: e1000_jeff]
+[ 4405.488534] CPU: 0 PID: 5384 Comm: ifconfig Tainted: G        W  OE   4.4.0-31-generic #50~14.04.1-Ubuntu
+[ 4405.488536] Hardware name: VMware, Inc. VMware Virtual Platform/440BX Desktop Reference Platform, BIOS 6.00 07/02/2015
+[ 4405.488538]  0000000000000000 ffff88003d36fcd8 ffffffff813d433c 0000000000000000
+[ 4405.488542]  ffffffffc04b09f0 ffff88003d36fd10 ffffffff8107d776 ffff88006bfe0000
+[ 4405.488544]  ffff88003d36fe00 ffff88006bfe0c00 ffff88006bfe0840 ffffffff81cf63c0
+[ 4405.488547] Call Trace:
+[ 4405.488556]  [<ffffffff813d433c>] dump_stack+0x63/0x87
+[ 4405.488562]  [<ffffffff8107d776>] warn_slowpath_common+0x86/0xc0
+[ 4405.488565]  [<ffffffff8107d86a>] warn_slowpath_null+0x1a/0x20
+[ 4405.488570]  [<ffffffffc04a0ff3>] e1000_set_mac+0x53/0xf0 [e1000_jeff]
+[ 4405.488576]  [<ffffffff816eeed3>] dev_set_mac_address+0x43/0xa0
+[ 4405.488579]  [<ffffffff816f0665>] ? __dev_get_by_name+0x65/0x90
+[ 4405.488582]  [<ffffffff8170ae8c>] dev_ifsioc+0x7c/0x320
+[ 4405.488585]  [<ffffffff816eeb58>] ? dev_get_by_name_rcu+0x68/0x90
+[ 4405.488587]  [<ffffffff8170b215>] dev_ioctl+0xe5/0x520
+[ 4405.488592]  [<ffffffff8120d572>] ? do_filp_open+0x92/0xd0
+[ 4405.488596]  [<ffffffff816d46e2>] sock_do_ioctl+0x42/0x50
+[ 4405.488598]  [<ffffffff816d4be4>] sock_ioctl+0x1d4/0x2b0
+[ 4405.488602]  [<ffffffff8121063d>] do_vfs_ioctl+0x2dd/0x4c0
+[ 4405.488604]  [<ffffffff8120c653>] ? putname+0x53/0x60
+[ 4405.488608]  [<ffffffff811fcbc8>] ? do_sys_open+0x1b8/0x270
+[ 4405.488611]  [<ffffffff81210899>] SyS_ioctl+0x79/0x90
+[ 4405.488616]  [<ffffffff817f6f36>] entry_SYSCALL_64_fastpath+0x16/0x75
+[ 4405.488619] ---[ end trace 72f0dcb4bac0dc89 ]---
+[ 4405.516419] e1000_jeff 0000:02:01.0 zero_net0: 1000 Mbs, 
+[ 4405.516424] e1000_jeff 0000:02:01.0 zero_net0: Full Duplex
+
