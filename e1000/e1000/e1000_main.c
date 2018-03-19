@@ -3187,11 +3187,12 @@ static netdev_tx_t e1000_xmit_frame(struct sk_buff *skb,
 	 */
 	tx_ring = adapter->tx_ring;
 #ifdef DEBUG_SKB_TX
+/*
 	printk("<<<<skb->headlen=%d skb->maclen=%d machead=%d protocol=%d skb-protoclo=%d\n",
 			len,skb->mac_len,skb->mac_header,protocol,skb->protocol);
 	printk("skb->len=%d skb->head=%08X data=%08X tail=%08X end=%08X %s(%d)>>>>\n\n\n",
 			skb->len,skb->head,skb->data,skb->tail,skb->end,__func__,__LINE__);
-	
+*/
 #endif
 	/* On PCI/PCI-X HW, if packet size is less than ETH_ZLEN,
 	 * packets may get corrupted during padding by HW.
@@ -3199,7 +3200,6 @@ static netdev_tx_t e1000_xmit_frame(struct sk_buff *skb,
 	 */
 	if (eth_skb_pad(skb))
 		return NETDEV_TX_OK;
-
 	mss = skb_shinfo(skb)->gso_size;
 	/* The controller does a simple calculation to
 	 * make sure there is enough room in the FIFO before
@@ -3208,10 +3208,18 @@ static netdev_tx_t e1000_xmit_frame(struct sk_buff *skb,
 	 * overrun the FIFO, adjust the max buffer len if mss
 	 * drops.
 	 */
+
 	if (mss) {
 		u8 hdr_len;
 		max_per_txd = min(mss << 2, max_per_txd);
 		max_txd_pwr = fls(max_per_txd) - 1;
+#ifdef DEBUG_SKB_TX
+	printk("skb->head=0x%08X skb->data=0x%08X skb->tail=0x%08X skb->end=0x%08X skb->transport_header=0x%08X\n" \
+			"skb->network_header=0x%08X,skb->mac_header=0x%08X\n\n",
+			skb->head,skb->data,skb->tail,skb->end,skb->transport_header,skb->network_header,skb->mac_header);
+	printk("skb_transport_offset=0x%08X tcp_hdrlen=0x%08X %s(%d)\n\n",
+			skb_transport_offset(skb),tcp_hdrlen(skb),__func__,__LINE__);
+#endif 
 
 		hdr_len = skb_transport_offset(skb) + tcp_hdrlen(skb);
 		if (skb->data_len && hdr_len == len) {

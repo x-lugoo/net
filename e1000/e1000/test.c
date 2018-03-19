@@ -14,8 +14,8 @@ static u32 jntohl(u32 i)
 int main(void)
 {
 	int i = 0x12345678; 
-//	printf("i=%08X\n",jntohl(i));
-	asm("int $3");
+	printf("i=%08X\n",jntohl(i));
+//	asm("int $3");
 	return 0;
 }
 
