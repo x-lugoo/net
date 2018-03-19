@@ -1,1 +1,0 @@
-cmd_/mnt/hgfs/share/e1000/e1000_jeff.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/share/e1000/e1000_jeff.ko /mnt/hgfs/share/e1000/e1000_jeff.o /mnt/hgfs/share/e1000/e1000_jeff.mod.o
