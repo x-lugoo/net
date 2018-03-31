@@ -39,8 +39,6 @@ static char e1000_driver_string[] = "Intel(R) PRO/1000 Network Driver";
 const char e1000_driver_version[] = DRV_VERSION;
 static const char e1000_copyright[] = "Copyright (c) 1999-2006 Intel Corporation.";
 
-
-
 /* e1000_pci_tbl - PCI Device ID Table
  *
  * Last entry must be all 0s
@@ -408,7 +406,7 @@ static void e1000_configure(struct e1000_adapter *adapter)
 	 */
 	for (i = 0; i < adapter->num_rx_queues; i++) {
 		struct e1000_rx_ring *ring = &adapter->rx_ring[i];
-		adapter->alloc_rx_buf(adapter, ring,       /*alloc dma buffer*/
+		adapter->alloc_rx_buf(adapter, ring,
 				      E1000_DESC_UNUSED(ring));
 	}
 }
@@ -939,19 +937,6 @@ static int e1000_init_hw_struct(struct e1000_adapter *adapter,
  * The OS initialization, configuring of the adapter private structure,
  * and a hardware reset occur.
  **/
-static int print_dev_resource(struct pci_dev *pdev)
-{
-	int i;
-
-	if(!pdev){
-		pr_info("pdev is NULL\n");
-		return -1;
-	}
-	for(i = 0;i < sizeof(pdev->resource)/sizeof(pdev->resource[0]);i++)
-		pr_info(" index[%d],start=%08X,end=%08X\n",i,pdev->resource[i].start,pdev->resource[i].end);
-	return 0;
-}
-
 static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 {
 	struct net_device *netdev;
@@ -966,10 +951,13 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	u16 eeprom_apme_mask = E1000_EEPROM_APME;
 	int bars, need_ioport;
 
-	//print_dev_resource(pdev);
 	/* do not allocate ioport bars when not needed */
 	need_ioport = e1000_is_need_ioport(pdev);
-	if (need_ioport) {  /*need_ioport = 1  bar = 0x55(10011001)*/
+	if(pdev->device == E1000_DEV_ID_82545EM_COPPER){
+		printk("jeff-- printkselectd device id is 0x100f");
+	}
+		printk("jeff-- only test id =%04X,debug=%d",pdev->device,debug);
+	if (need_ioport) {
 		bars = pci_select_bars(pdev, IORESOURCE_MEM | IORESOURCE_IO);
 		err = pci_enable_device(pdev);
 	} else {
@@ -978,12 +966,11 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	}
 	if (err)
 		return err;
-#ifdef DEBUG
-	pr_info("need_ioport=%d,bars=%08X,debuglevel=%d\n",need_ioport,bars,debug);
-#endif
+
 	err = pci_request_selected_regions(pdev, bars, e1000_driver_name);
 	if (err)
 		goto err_pci_reg;
+
 	pci_set_master(pdev);
 	err = pci_save_state(pdev);
 	if (err)
@@ -1011,18 +998,13 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	hw->hw_addr = pci_ioremap_bar(pdev, BAR_0);
 	if (!hw->hw_addr)
 		goto err_ioremap;
-#ifdef DEBUG //0x00D00000
-	//pr_info("hw_addr=%08X\n",hw->hw_addr);
-#endif	
+
 	if (adapter->need_ioport) {
 		for (i = BAR_1; i <= BAR_5; i++) {
 			if (pci_resource_len(pdev, i) == 0)
 				continue;
 			if (pci_resource_flags(pdev, i) & IORESOURCE_IO) {
 				hw->io_base = pci_resource_start(pdev, i);
-#ifdef DEBUG//0x8192
-	//pr_info("iobase=%ld\n",hw->io_base);
-#endif				
 				break;
 			}
 		}
@@ -1038,9 +1020,6 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	 * 32-bit adapters that Tx hang when given 64-bit DMA addresses
 	 */
 	pci_using_dac = 0;
-#ifdef DEBUG /*bus_type=1*/
-	//pr_info("hw bus_type=%d\n",hw->bus_type);
-#endif	
 	if ((hw->bus_type == e1000_bus_type_pcix) &&
 	    !dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64))) {
 		pci_using_dac = 1;
@@ -1055,10 +1034,6 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	netdev->netdev_ops = &e1000_netdev_ops;
 	e1000_set_ethtool_ops(netdev);
 	netdev->watchdog_timeo = 5 * HZ;
-#ifdef DEBUG/*watchdog_time 1250  using_dac = 0*/
-	//pr_info("watchdog_Time=%d,pci_using_dac=%d\n",netdev->watchdog_timeo,pci_using_dac);
-#endif	
-	
 	netif_napi_add(netdev, &adapter->napi, e1000_clean, 64);
 
 	strncpy(netdev->name, pci_name(pdev), sizeof(netdev->name) - 1);
@@ -1072,19 +1047,15 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 		goto err_sw_init;
 
 	err = -EIO;
-#ifdef DEBUG /*mac_type=*/
-	//pr_info("hw->mac_type=%d\n",hw->mac_type);
-#endif		
 	if (hw->mac_type == e1000_ce4100) {
 		hw->ce4100_gbe_mdio_base_virt =
 					ioremap(pci_resource_start(pdev, BAR_1),
 		                                pci_resource_len(pdev, BAR_1));
-#ifdef DEBUG
-	//pr_info("hw->ce4100_gbe_mdio_base_virt=%08X\n",hw->ce4100_gbe_mdio_base_virt);
-#endif	
+
 		if (!hw->ce4100_gbe_mdio_base_virt)
 			goto err_mdio_ioremap;
 	}
+
 	if (hw->mac_type >= e1000_82543) {
 		netdev->hw_features = NETIF_F_SG |
 				   NETIF_F_HW_CSUM |
@@ -1151,6 +1122,7 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	}
 	/* don't block initialization here due to bad MAC address */
 	memcpy(netdev->dev_addr, hw->mac_addr, netdev->addr_len);
+//	memcpy(netdev->dev_addr,"\x00\x0c\x29\x29\x99\x99",netdev->addr_len);
 	if (!is_valid_ether_addr(netdev->dev_addr))
 		e_err(probe, "Invalid MAC Address\n");
 
@@ -1231,9 +1203,6 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 		for (i = 0; i < 32; i++) {
 			hw->phy_addr = i;
 			e1000_read_phy_reg(hw, PHY_ID2, &tmp);
-#ifdef DEBUG
-	pr_info("PHY address=%08X\n",tmp);
-#endif
 			if (tmp == 0 || tmp == 0xFF) {
 				if (i == 31)
 					goto err_eeprom;
@@ -1246,19 +1215,14 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	/* reset the hardware with the new settings */
 	e1000_reset(adapter);
 
-	strcpy(netdev->name, "zero%d");
+	strcpy(netdev->name, "eth%d");
 	err = register_netdev(netdev);
 	if (err)
 		goto err_register;
 
-#ifdef DEBUG	
-	//pr_info("open vlan function %s,%d\n",__func__,__LINE__);
-#endif
-	//e1000_vlan_filter_on_off(adapter, false);
-	e1000_vlan_filter_on_off(adapter, true);
+	e1000_vlan_filter_on_off(adapter, false);
 
 	/* print bus type/speed/width info */
-/*
 	e_info(probe, "(PCI%s:%dMHz:%d-bit) %pM\n",
 	       ((hw->bus_type == e1000_bus_type_pcix) ? "-X" : ""),
 	       ((hw->bus_speed == e1000_bus_speed_133) ? 133 :
@@ -1267,7 +1231,7 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 		(hw->bus_speed == e1000_bus_speed_66) ? 66 : 33),
 	       ((hw->bus_width == e1000_bus_width_64) ? 64 : 32),
 	       netdev->dev_addr);
-*/
+
 	/* carrier off reporting is important to ethtool even BEFORE open */
 	netif_carrier_off(netdev);
 
@@ -1405,8 +1369,10 @@ static int e1000_open(struct net_device *netdev)
 	struct e1000_adapter *adapter = netdev_priv(netdev);
 	struct e1000_hw *hw = &adapter->hw;
 	int err;
-#ifdef DEBUG	
-	pr_info("e1000 is open%s,%d\n",__func__,__LINE__);
+	printk("%s:%d\n",__func__,__LINE__);
+#ifdef DEBUG_INTR
+	//printk("%s:%d\n",__func__,__LINE__);
+	//WARN_ON(1);
 #endif
 	/* disallow open during test */
 	if (test_bit(__E1000_TESTING, &adapter->flags))
@@ -1423,10 +1389,6 @@ static int e1000_open(struct net_device *netdev)
 	err = e1000_setup_all_rx_resources(adapter);
 	if (err)
 		goto err_setup_rx;
-	
-#ifdef DEBUG
-	pr_info("rx_nums=%d,%s,%d\n",adapter->num_rx_queues,__func__,__LINE__);
-#endif
 
 	e1000_power_up_phy(adapter);
 
@@ -1753,9 +1715,6 @@ static int e1000_setup_rx_resources(struct e1000_adapter *adapter,
 	rxdr->size = rxdr->count * desc_len;
 	rxdr->size = ALIGN(rxdr->size, 4096);
 
-#ifdef DEBUG
-	pr_info("rxdr db count=%d,rxdr-size=%d\n",rxdr->count,rxdr->size);
-#endif
 	rxdr->desc = dma_alloc_coherent(&pdev->dev, rxdr->size, &rxdr->dma,
 					GFP_KERNEL);
 	if (!rxdr->desc) {
@@ -1766,9 +1725,6 @@ setup_rx_desc_die:
 
 	/* Fix for errata 23, can't cross 64kB boundary */
 	if (!e1000_check_64k_bound(adapter, rxdr->desc, rxdr->size)) {
-#ifdef DEBUG
-	pr_info("e1000_check_64k_bound\n");
-#endif		
 		void *olddesc = rxdr->desc;
 		dma_addr_t olddma = rxdr->dma;
 		e_err(rx_err, "rxdr align check failed: %u bytes at %p\n",
@@ -1784,10 +1740,6 @@ setup_rx_desc_die:
 		}
 
 		if (!e1000_check_64k_bound(adapter, rxdr->desc, rxdr->size)) {
-#ifdef DEBUG
-	pr_info("e1000_check_64k_bound\n second");
-#endif
-			
 			/* give up */
 			dma_free_coherent(&pdev->dev, rxdr->size, rxdr->desc,
 					  rxdr->dma);
@@ -2260,11 +2212,7 @@ static int e1000_set_mac(struct net_device *netdev, void *p)
 	struct e1000_adapter *adapter = netdev_priv(netdev);
 	struct e1000_hw *hw = &adapter->hw;
 	struct sockaddr *addr = p;
-#ifdef DEBUG
 
-	pr_info("change mac address %s %d\n",__func__,__LINE__);
-	WARN_ON(1);
-#endif
 	if (!is_valid_ether_addr(addr->sa_data))
 		return -EADDRNOTAVAIL;
 
@@ -3165,7 +3113,6 @@ static int e1000_maybe_stop_tx(struct net_device *netdev,
 static netdev_tx_t e1000_xmit_frame(struct sk_buff *skb,
 				    struct net_device *netdev)
 {
-	/*after call probe() generate netdev and adapter*/
 	struct e1000_adapter *adapter = netdev_priv(netdev);
 	struct e1000_hw *hw = &adapter->hw;
 	struct e1000_tx_ring *tx_ring;
@@ -3186,20 +3133,14 @@ static netdev_tx_t e1000_xmit_frame(struct sk_buff *skb,
 	 * single qdisc implementation, we can look at this again.
 	 */
 	tx_ring = adapter->tx_ring;
-#ifdef DEBUG_SKB_TX
-/*
-	printk("<<<<skb->headlen=%d skb->maclen=%d machead=%d protocol=%d skb-protoclo=%d\n",
-			len,skb->mac_len,skb->mac_header,protocol,skb->protocol);
-	printk("skb->len=%d skb->head=%08X data=%08X tail=%08X end=%08X %s(%d)>>>>\n\n\n",
-			skb->len,skb->head,skb->data,skb->tail,skb->end,__func__,__LINE__);
-*/
-#endif
+
 	/* On PCI/PCI-X HW, if packet size is less than ETH_ZLEN,
 	 * packets may get corrupted during padding by HW.
 	 * To WA this issue, pad all small packets manually.
 	 */
 	if (eth_skb_pad(skb))
 		return NETDEV_TX_OK;
+
 	mss = skb_shinfo(skb)->gso_size;
 	/* The controller does a simple calculation to
 	 * make sure there is enough room in the FIFO before
@@ -3208,18 +3149,10 @@ static netdev_tx_t e1000_xmit_frame(struct sk_buff *skb,
 	 * overrun the FIFO, adjust the max buffer len if mss
 	 * drops.
 	 */
-
 	if (mss) {
 		u8 hdr_len;
 		max_per_txd = min(mss << 2, max_per_txd);
 		max_txd_pwr = fls(max_per_txd) - 1;
-#ifdef DEBUG_SKB_TX
-	printk("skb->head=0x%08X skb->data=0x%08X skb->tail=0x%08X skb->end=0x%08X skb->transport_header=0x%08X\n" \
-			"skb->network_header=0x%08X,skb->mac_header=0x%08X\n\n",
-			skb->head,skb->data,skb->tail,skb->end,skb->transport_header,skb->network_header,skb->mac_header);
-	printk("skb_transport_offset=0x%08X tcp_hdrlen=0x%08X %s(%d)\n\n",
-			skb_transport_offset(skb),tcp_hdrlen(skb),__func__,__LINE__);
-#endif 
 
 		hdr_len = skb_transport_offset(skb) + tcp_hdrlen(skb);
 		if (skb->data_len && hdr_len == len) {
@@ -3836,7 +3769,6 @@ static irqreturn_t e1000_intr(int irq, void *data)
 	struct e1000_hw *hw = &adapter->hw;
 	u32 icr = er32(ICR);
 
-		
 	if (unlikely((!icr)))
 		return IRQ_NONE;  /* Not our interrupt */
 
@@ -3881,13 +3813,25 @@ static irqreturn_t e1000_intr(int irq, void *data)
  **/
 static int e1000_clean(struct napi_struct *napi, int budget)
 {
+#ifdef DEBUG_INTR
+	static int count = 0;
+#endif
 
-
-	struct e1000_adapter *adapter = container_of(napi, struct e1000_adapter, napi);
+	struct e1000_adapter *adapter = container_of(napi, struct e1000_adapter,
+						     napi);
 	int tx_clean_complete = 0, work_done = 0;
+
 	tx_clean_complete = e1000_clean_tx_irq(adapter, &adapter->tx_ring[0]);
+
 	adapter->clean_rx(adapter, &adapter->rx_ring[0], &work_done, budget);
 
+#ifdef DEBUG_INTR
+	if(count == 0){
+		printk("%s:%d\n",__func__,__LINE__);
+		WARN_ON(1);
+	}
+	 count = 1;
+#endif
 	if (!tx_clean_complete)
 		work_done = budget;
 
@@ -4073,11 +4017,6 @@ static void e1000_receive_skb(struct e1000_adapter *adapter, u8 status,
 			      __le16 vlan, struct sk_buff *skb)
 {
 	skb->protocol = eth_type_trans(skb, adapter->netdev);
-#ifdef DEBUG_SKB
-	printk("skb->len=%d skb->head=%08X data=%08X tail=%08X end=%08X %s(%d)\n",
-			skb->len,skb->head,skb->data,skb->tail,skb->end,__func__,__LINE__);
-	printk("skb->protocol=%d\n",skb->protocol);
-#endif
 
 	if (status & E1000_RXD_STAT_VP) {
 		u16 vid = le16_to_cpu(vlan) & E1000_RXD_SPC_VLAN_MASK;
@@ -4085,7 +4024,6 @@ static void e1000_receive_skb(struct e1000_adapter *adapter, u8 status,
 		__vlan_hwaccel_put_tag(skb, htons(ETH_P_8021Q), vid);
 	}
 	napi_gro_receive(&adapter->napi, skb);
-
 }
 
 /**
@@ -4401,41 +4339,20 @@ static struct sk_buff *e1000_copybreak(struct e1000_adapter *adapter,
 				       struct e1000_rx_buffer *buffer_info,
 				       u32 length, const void *data)
 {
-	u32 i;
-	static int once = 1;
 	struct sk_buff *skb;
 
 	if (length > copybreak)
 		return NULL;
-#ifdef DEBUG_PKG
-	printk("\npack^^^^^^^,length=%d(0X%08X)\n",length,length);
 
-	for(i = 0;i < length;i++){
-		printk("%02x ",*((u8*)data + i));
-		if(((i+1) % 16) == 0) /*16 equals to the lens of wireshark*/
-			printk("\n");
-	}
-	printk("\npackVVVVVVV,length=%d(0X%08X)\n",length,length);
-#endif
-
-	if(once == 1)	
-		//WARN_ON(1);
-	once = 2;
-#ifdef DEBUG_SKB
-	printk("\n PKG length=%d(0X%08X)\n",length,length);
 	skb = e1000_alloc_rx_skb(adapter, length);
 	if (!skb)
 		return NULL;
-	printk("skb->len=%d skb->head=%08X data=%08X tail=%08X end=%08X %s(%d)\n",
-			skb->len,skb->head,skb->data,skb->tail,skb->end,__func__,__LINE__);
 
 	dma_sync_single_for_cpu(&adapter->pdev->dev, buffer_info->dma,
 				length, DMA_FROM_DEVICE);
 
 	memcpy(skb_put(skb, length), data, length);
-	printk("skb->len=%d skb->head=%08X data=%08X tail=%08X end=%08X %s(%d)\n",
-			skb->len,skb->head,skb->data,skb->tail,skb->end,__func__,__LINE__);
-#endif
+
 	return skb;
 }
 
@@ -4450,12 +4367,12 @@ static bool e1000_clean_rx_irq(struct e1000_adapter *adapter,
 			       struct e1000_rx_ring *rx_ring,
 			       int *work_done, int work_to_do)
 {
-	static int i = 1;
 	struct net_device *netdev = adapter->netdev;
 	struct pci_dev *pdev = adapter->pdev;
 	struct e1000_rx_desc *rx_desc, *next_rxd;
 	struct e1000_rx_buffer *buffer_info, *next_buffer;
 	u32 length;
+	unsigned int i;
 	int cleaned_count = 0;
 	bool cleaned = false;
 	unsigned int total_rx_bytes=0, total_rx_packets=0;
@@ -4488,10 +4405,6 @@ static bool e1000_clean_rx_irq(struct e1000_adapter *adapter,
 				adapter->alloc_rx_buff_failed++;
 				break;
 			}
-#ifdef DEBUG_SKB
-	printk("\n SKB assigned error entery second\n");
-#endif
-	
 
 			skb_reserve(skb, E1000_HEADROOM);
 			dma_unmap_single(&pdev->dev, buffer_info->dma,
@@ -4550,10 +4463,7 @@ process_skb:
 			 * done after the TBI_ACCEPT workaround above
 			 */
 			length -= 4;
-#ifdef DEBUG_SKB
-		printk("skb->len=%d skb->head=%08X data=%08X tail=%08X end=%08X %s(%d)\n",
-			skb->len,skb->head,skb->data,skb->tail,skb->end,__func__,__LINE__);
-#endif
+
 		if (buffer_info->rxbuf.data == NULL)
 			skb_put(skb, length);
 		else /* copybreak skb */
@@ -4564,10 +4474,7 @@ process_skb:
 				  (u32)(status) |
 				  ((u32)(rx_desc->errors) << 24),
 				  le16_to_cpu(rx_desc->csum), skb);
-#ifdef DEBUG_SKB	
-	printk("skb->len=%d skb->head=%08X data=%08X tail=%08X end=%08X %s(%d)\n",
-			skb->len,skb->head,skb->data,skb->tail,skb->end,__func__,__LINE__);
-#endif
+
 		e1000_receive_skb(adapter, status, rx_desc->special, skb);
 
 next_desc:
@@ -4640,10 +4547,6 @@ e1000_alloc_jumbo_rx_buffers(struct e1000_adapter *adapter,
 
 		rx_desc = E1000_RX_DESC(*rx_ring, i);
 		rx_desc->buffer_addr = cpu_to_le64(buffer_info->dma);
-#ifdef DEBUG
-	//pr_info("rx_desc->buff_addr =%08X,buffer_indo->dma=%08X,%s,%d\n",
-	//	rx_desc->buffer_addr,buffer_info->dma,__func__,__LINE__);
-#endif
 
 		if (unlikely(++i == rx_ring->count))
 			i = 0;
@@ -4759,12 +4662,7 @@ static void e1000_alloc_rx_buffers(struct e1000_adapter *adapter,
  skip:
 		rx_desc = E1000_RX_DESC(*rx_ring, i);
 		rx_desc->buffer_addr = cpu_to_le64(buffer_info->dma);
-/**
-*#ifdef DEBUG
-*	pr_info("buffer_info->dma=%08X,rx_desc->buffer_addr=%08X %s %d\n",
-*		buffer_info->dma,rx_desc->buffer_addr,__func__,__LINE__);
-*	#endif
-**/
+
 		if (unlikely(++i == rx_ring->count))
 			i = 0;
 		buffer_info = &rx_ring->buffer_info[i];
